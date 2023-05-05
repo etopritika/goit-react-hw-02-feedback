@@ -51,13 +51,13 @@ class Feedback extends Component {
     const positiveFeedback = parseInt(this.countPositiveFeedbackPercentage());
     return (
       <div className="Feedback">
-        <Section>
+        <Section title="Please leave feedback">
           <FeedbackOptions
             options={['good', 'neutral', 'bad']}
             onButtonClick={this.handleButtonClick}
           />
         </Section>
-        <Section>
+        <Section title="Statistics">
           <Statistics
             good={good}
             neutral={neutral}
