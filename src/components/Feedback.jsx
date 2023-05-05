@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import FeedbackSection from './FeedbackSection';
-import StatisticsSection from './StatisticsSection';
+import Statistics from './FeedbackOptions';
+import FeedbackOptions from './FeedbackOptions';
+import Section from './Section';
 
 class Feedback extends Component {
   state = {
@@ -45,25 +46,26 @@ class Feedback extends Component {
   };
 
   render() {
-    // const { title } = this.props;
     const { good, neutral, bad } = this.state;
     const sum = this.countTotalFeedback();
     const positiveFeedback = parseInt(this.countPositiveFeedbackPercentage());
     return (
       <div className="Feedback">
-        <FeedbackSection
-          title="Please leave feedback"
-          onButtonClick={this.handleButtonClick}
-        />
-
-        <StatisticsSection
-          title="Statistics"
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={sum}
-          positivePercentage={positiveFeedback}
-        />
+        <Section>
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onButtonClick={this.handleButtonClick}
+          />
+        </Section>
+        <Section>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={sum}
+            positivePercentage={positiveFeedback}
+          />
+        </Section>
       </div>
     );
   }
