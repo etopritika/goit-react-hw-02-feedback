@@ -1,12 +1,11 @@
-// import Feedback from './Feedback';
 import React, { Component } from 'react';
 import Section from './Section';
 
 export class App extends Component {
   state = {
-    good: 1,
-    neutral: 2,
-    bad: 1,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
   handleButtonClick = buttonIndex => {
     switch (buttonIndex) {
