@@ -29,8 +29,10 @@ export default function Section({
           bad={bad}
           total={total}
           positivePercentage={positivePercentage}
-        /> 
-      ): (<Notification message="There is no feedback"/>)}
+        />
+      ) : (
+        <Notification message="There is no feedback" />
+      )}
     </section>
   );
 }
@@ -44,4 +46,4 @@ Section.propTypes = {
   bad: PropTypes.number,
   total: PropTypes.number,
   positivePercentage: PropTypes.number,
-}
+};

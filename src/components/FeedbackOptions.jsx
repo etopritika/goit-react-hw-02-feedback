@@ -18,4 +18,4 @@ export default function FeedbackOptions({ options, onButtonClick }) {
 FeedbackOptions.propTypes = {
   options: PropTypes.array,
   onButtonClick: PropTypes.func,
-}
+};
