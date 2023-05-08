@@ -6,7 +6,7 @@ export default function FeedbackOptions({ options, onButtonClick }) {
     <ul>
       {options.map((option, index) => (
         <li key={index}>
-          <button type="button" onClick={() => onButtonClick(index)}>
+          <button type="button" onClick={() => onButtonClick(option)}>
             {option}
           </button>
         </li>

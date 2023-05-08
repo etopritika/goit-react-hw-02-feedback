@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Section from './Section';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
+import Notification from './Notification';
 
 export class App extends Component {
   state = {
@@ -7,26 +10,13 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleButtonClick = buttonIndex => {
-    switch (buttonIndex) {
-      case 0:
-        this.setState({
-          good: this.state.good + 1,
-        });
-        break;
-      case 1:
-        this.setState({
-          neutral: this.state.neutral + 1,
-        });
-        break;
-      case 2:
-        this.setState({
-          bad: this.state.bad + 1,
-        });
-        break;
-      default:
-        break;
-    }
+
+  handleButtonClick = option => {
+    this.setState(prevState => {
+      return {
+        [option]: prevState[option] + 1,
+      };
+    });
   };
 
   countTotalFeedback = () => {
@@ -48,16 +38,27 @@ export class App extends Component {
     const positiveFeedback = parseInt(this.countPositiveFeedbackPercentage());
     return (
       <>
-        <Section
-          title="Please leave feedback"
-          secondTitle="Statistics"
-          onButtonClick={this.handleButtonClick}
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={sum}
-          positivePercentage={positiveFeedback}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            title="Please leave feedback"
+            options={['good', 'neutral', 'bad']}
+            onButtonClick={this.handleButtonClick}
+          />
+        </Section>
+        <Section title="Statistics">
+          {sum > 0 ? (
+            <Statistics
+              title="Statistics"
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={sum}
+              positivePercentage={positiveFeedback}
+            />
+          ) : (
+            <Notification message="No feedback given" />
+          )}
+        </Section>
       </>
     );
   }
